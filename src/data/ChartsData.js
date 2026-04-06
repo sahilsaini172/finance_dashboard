@@ -80,3 +80,12 @@ export const transactions = [
     name: "Internet Bill",
   },
 ];
+
+
+export const newTransactions = [
+  { id: 1, date: '2026-04-01', description: 'Grocery Store', category: 'Food', amount: 85.50, type: 'expense' },
+  { id: 2, date: '2026-04-02', description: 'Freelance Project', category: 'Work', amount: 2500.00, type: 'income' },
+  { id: 3, date: '2026-04-03', description: 'Monthly Rent', category: 'Housing', amount: 1200.00, type: 'expense' },
+  { id: 4, date: '2026-04-04', description: 'Investment Dividend', category: 'Investment', amount: 150.00, type: 'income' },
+  { id: 5, date: '2026-04-05', description: 'Netflix Subscription', category: 'Entertainment', amount: 15.99, type: 'expense' },
+];

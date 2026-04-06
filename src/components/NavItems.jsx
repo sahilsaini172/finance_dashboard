@@ -26,16 +26,16 @@ const NavItems = ({ navbarState, toggleState }) => {
 
       {/* Menu Panel */}
       <div
-        className={`absolute top-0 right-0 h-full w-72 bg-white shadow-xl transition-transform duration-300 ${
+        className={`absolute top-0 right-0 h-full w-72 bg-background-100 shadow-xl transition-transform duration-300 ${
           navbarState ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="p-4 flex items-center justify-end border-b border-gray-100">
+        <div className="p-2 flex items-center justify-end ">
           <button
             onClick={toggleState}
-            className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="p-2 rounded-lg hover:bg-background-300 transition-colors"
           >
-            <X size={22} />
+            <X />
           </button>
         </div>
 

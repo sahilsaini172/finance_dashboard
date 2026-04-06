@@ -1,13 +1,16 @@
-import { Menu, X } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
+import { useUIStore } from "../store/useUIStore";
 
-const Navbar = ({ navbarState, toggleState }) => {
+const Navbar = () => {
+  const theme = useUIStore((state) => state.theme);
+  const toggleTheme = useUIStore((state) => state.toggleTheme);
   return (
-    <div className="p-2 z-10 bg-white flex items-center w-full justify-end">
+    <div className="p-2 z-10 bg-background-100 flex items-center w-full justify-end">
       <button
-        onClick={toggleState}
+        onClick={toggleTheme}
         className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
       >
-        <Menu />
+        {theme=='dark' ? <Sun /> : <Moon />}
       </button>
     </div>
   );
