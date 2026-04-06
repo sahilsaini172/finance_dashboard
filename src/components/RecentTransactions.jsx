@@ -1,19 +1,28 @@
+import { Link } from "react-router-dom";
 import { transactions } from "../data/ChartsData";
 import { format, parseISO } from "date-fns";
 
-const RecentTransactions = () => {
+const RecentTransactions = ({ counts = 5, viewAll = true }) => {
   const recentTransactions = [...transactions]
     .sort((a, b) => new Date(b.date) - new Date(a.date))
-    .slice(0, 5);
+    .slice(0, counts);
   return (
-    <div className="p-4 rounded-xl bg-background-100 flex flex-col">
-      <h3 className="text-lg font-semibold text-foreground-500">
-        Recent Transactions
-      </h3>
+    <div className="bg-background-100 p-4 rounded-xl shadow-sm flex flex-col">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="font-semibold text-foreground-100">
+          Recent Transactions
+        </h3>
+
+        {viewAll && <Link key={"/transactions"} to={"/transactions"}>
+          <button className="text-sm bg-primary-400 font-medium py-2 px-4 rounded-md text-white">
+            View All
+          </button>
+        </Link>}
+      </div>
       <div className="overflow-x-auto h-full">
         <table className="w-full min-h-160">
           <thead>
-            <tr>
+            <tr className="*:p-2 border-b border-background-300">
               <th>Date</th>
               <th>Name</th>
               <th>Category</th>
@@ -25,17 +34,17 @@ const RecentTransactions = () => {
             {recentTransactions.map((item) => (
               <tr
                 key={item.id}
-                className="border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors"
+                className="border-b border-background-200 last:border-b-0  transition-colors"
               >
-                <td className="px-5 py-4 text-sm text-gray-600">
+                <td className="px-6 py-4 text-sm text-foreground-300 w-fit shrink-0">
                   {format(parseISO(item.date), "MMM dd, yyyy")}
                 </td>
 
-                <td className="px-5 py-4 text-sm font-medium text-gray-900">
+                <td className="px-5 py-4 text-sm font-medium text-foreground-100">
                   {item.name}
                 </td>
 
-                <td className="px-5 py-4 text-sm text-gray-600">
+                <td className="px-5 py-4 text-sm text-foreground-300">
                   {item.category}
                 </td>
 
@@ -43,8 +52,8 @@ const RecentTransactions = () => {
                   <span
                     className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${
                       item.type === "income"
-                        ? "bg-green-100 text-green-700"
-                        : "bg-red-100 text-red-700"
+                        ? "bg-green-500/5 text-green-500"
+                        : "bg-red-500/5 text-red-500"
                     }`}
                   >
                     {item.type}
@@ -52,7 +61,7 @@ const RecentTransactions = () => {
                 </td>
 
                 <td
-                  className={`px-5 py-4 text-sm font-semibold text-right ${
+                  className={`px-5 py-4 shrink-0 text-sm font-semibold text-right ${
                     item.type === "income" ? "text-green-600" : "text-red-600"
                   }`}
                 >
